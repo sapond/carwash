@@ -1,0 +1,6 @@
+/*styles for home content only*/
+label {
+  display: block;
+  margin-bottom: 10px;
+  padding: 10px;
+}

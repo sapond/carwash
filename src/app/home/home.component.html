@@ -1,0 +1,51 @@
+<div>
+  <h1 x-large class="sample-content">CarWash MVP!</h1>
+  <hr>
+  <div>
+
+    <form (ngSubmit)="submitState(localState)" autocomplete="off">
+      <label>
+        License Plate
+        <input
+          [value]="localState.licensePlate"
+          (input)="localState.licensePlate = $event.target.value"
+          placeholder="Enter license plate Number"
+          autofocus>
+      </label>
+      <label>
+        Vehicle Type
+        <div *ngFor="let choice of appState.get('types')">
+          <input type="radio"
+                 name="type"
+                 [(ngModel)]="localState.type"
+                 [checked]="localState.type==choice"
+                 [value]="choice" />
+          {{choice}}<br>
+        </div>
+      </label>
+      <label>
+        Mud in bed?
+        <input [disabled]="localState.type == 'Car'" type="checkbox"
+        name="mudInBed"
+        [(ngModel)]="localState.mudInBed">
+      </label>
+      <label>
+        Bed let down?
+        <input [disabled]="localState.type == 'Car'" type="checkbox"
+        name="bedLetDown"
+        [(ngModel)]="localState.bedLetDown">
+      </label>
+      <button [disabled]="!isValid()">Submit</button>
+    </form>
+    <!--
+        <input type="text" [value]="localState.value" (input)="localState.value = $event.target.value" autofocus>
+        Rather than wiring up two-way data-binding ourselves with [value] and (input)
+        we can use Angular's [(ngModel)] syntax
+        <input type="text" name="textInput" [(ngModel)]="localState.value" autofocus>
+      -->
+
+    <pre>this.localState = {{ localState | json }}</pre>
+
+  </div>
+
+</div>
